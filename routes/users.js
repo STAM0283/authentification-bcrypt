@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 const connexion = require('../data/mysql');
 
-router.get('/users', (req, res) => {
+router.get('/', (req, res) => {
   res.status(200).send('<h1>You welcome into my app</h1>');
 });
 router.post('/users', async (req, res) => {
