@@ -4,8 +4,17 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 const connexion = require('../data/mysql');
 
-router.get('/', (req, res) => {
+router.get('/', (_, res) => {
   res.status(200).send('<h1>You welcome into my app</h1>');
+});
+router.get('/users', (_, res) => {
+  connexion.query('SELECT * FROM user', (err, result) => {
+    if (err) {
+      res.status(400).send('Error to display users');
+    } else {
+      res.status(200).send(result);
+    }
+  });
 });
 router.post('/users', async (req, res) => {
   try {
